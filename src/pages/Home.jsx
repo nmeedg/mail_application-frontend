@@ -11,8 +11,6 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import { Input, Avatar,Spinner } from "@material-tailwind/react";
 import axios from "axios";
-import Stomp from 'stompjs'
-import SockJS from 'sockjs-client';
 
 var stompClient=null
 function Home() {
@@ -45,13 +43,7 @@ function Home() {
         {}
       );
     }
-    registerUser()
   }, []);
-  function registerUser() {
-    let socket=SockJS("http://localhost:8080/ws")
-    stompClient=Stomp.overWS(socket)
-    stompClient.connect(()=>{},onConnected, onError)
-  }
 
 
   /*

@@ -6,7 +6,7 @@ import {
   faGooglePlus,
   faFacebook,
   faLinkedin,
-} from "@fortawesome/free-brands-svg-icons";
+} from "@fortawesome/free-brands-svg-icons"; 
 import { faUser, faEnvelope } from "@fortawesome/free-regular-svg-icons";
 import { faPhone, faLock, faL } from "@fortawesome/free-solid-svg-icons";
 import Signup from "../components/signup";
