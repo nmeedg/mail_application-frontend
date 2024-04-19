@@ -9,8 +9,43 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import {faEnvelope } from "@fortawesome/free-regular-svg-icons";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios"
+import {useNavigate} from "react-router-dom"
+import {toast,ToastContainer} from 'react-toastify'
 
 function Signin() {
+    let [email,setEmail]=useState("")
+    let [password,setPassword]=useState("")
+
+    let navigate=useNavigate()
+
+    function hanleSubmit() {
+      if (email == "") {
+        toast.error("Veuillez renseigner l'adresse email")
+      } else {
+        
+      }
+        let temp={
+            "email":email,
+            "password":password
+        }
+        axios.post("http://localhost:8080/users/login",temp).then((res)=>{
+            console.log(res)
+            navigate("/",{
+              state:{
+                "id":res.data
+              }
+            })
+            toast.success("Bienvenue, vous etes connecté",{
+              position:"top-center"
+            })
+        },(err)=>{
+            console.log(res)
+        })
+        setEmail("")
+    }
+
+
   return (
 <div className=" w-3/5 p-5 ">
           <h1 className="text-center text-2xl font-bold uppercase p-6">
@@ -24,6 +59,8 @@ function Signin() {
               color="indigo"
               type="email"
               label="Adresse email"
+              value={email}
+              onChange={(e)=>setEmail(e.target.value)}
               placeholder="ex: ngoufackedgard1@gmail.com"
               icon={<FontAwesomeIcon icon={faEnvelope} />}
             />
@@ -32,9 +69,11 @@ function Signin() {
               color="indigo"
               type="password"
               label="Mot de passe"
+              value={password}
+              onChange={(e)=>setPassword(e.target.value)}
               icon={<FontAwesomeIcon icon={faLock} />}
             />
-            <Button color="indigo" className="w-1/2 text-center mx-auto mt-3">
+            <Button color="indigo" className="w-1/2 text-center mx-auto mt-3" onClick={hanleSubmit}>
               Se connecter
             </Button>
           </form>

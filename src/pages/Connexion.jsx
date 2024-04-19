@@ -19,7 +19,7 @@ function Connexion() {
   return (
     <div className=" h-screen w-full flex items-center justify-center bg-gradient-to-br from-blue-gray-100 to-blue-200">
       <section className=" w-2/3 min-h-[550px] bg-white rounded-xl shadow-xl overflow-hidden flex">
-        {!active ? <Signup></Signup> : <Signin />}
+        {!active ? <Signup handleParent={setActive}></Signup> : <Signin />}
         <div className="bg-gradient-to-br p-5 from-blue-700 to-indigo-900 w-2/5 rounded-tl-[120px] rounded-bl-[120px] flex items-center justify-center">
           {!active ? <div className="text-white flex flex-col">
             <h2 className="text-2xl font-bold text-center py-4">

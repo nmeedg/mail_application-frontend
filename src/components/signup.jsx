@@ -11,7 +11,7 @@ import { faUser, faEnvelope } from "@fortawesome/free-regular-svg-icons";
 import { faPhone, faLock } from "@fortawesome/free-solid-svg-icons";
 import axios from 'axios'
 
-function Signup() {
+function Signup(props) {
 let [name,setName]=useState("")
 let [email,setEmail]=useState("")
 let [number,setNumber]=useState(null)
@@ -24,6 +24,17 @@ function handleSubmit() {
     "telephone":number,
     "password":password
   }
+  axios.post("http://localhost:8080/users/signup",temp).then((res)=>{
+    console.log(res)
+  }, (err)=> {
+    console.log(err);
+  })
+  setName("")
+  setEmail("")
+  setNumber(null)
+  setPassword("")
+  
+  props.handleParent(true)
 }
   return (
 <div className=" w-3/5 p-5 ">
